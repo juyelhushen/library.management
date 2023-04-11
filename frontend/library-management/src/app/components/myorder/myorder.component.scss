@@ -1,0 +1,16 @@
+:host {
+  display: block;
+  margin: 3rem auto 0;
+  width: 80%;
+}
+
+table {
+  width: 100%;
+  border: 1px solid rgba(255,255,255,0.1);
+
+  .mat-cell,
+  .mat-header-cell {
+    font-size: 1.1rem;
+  }
+
+}

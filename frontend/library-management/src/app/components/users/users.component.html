@@ -1,0 +1,56 @@
+<h1>User List</h1>
+
+<table mat-table [dataSource]="users">
+
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef>Id</th>
+    <td mat-cell *matCellDef="let element">{{element.id}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Id</th>
+    <td mat-cell *matCellDef="let element">{{element.firstName +' ' +element.lastName}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="email">
+    <th mat-header-cell *matHeaderCellDef>Email</th>
+    <td mat-cell *matCellDef="let element">{{element.email}}</td>
+  </ng-container>
+  <ng-container matColumnDef="mobilenumber">
+    <th mat-header-cell *matHeaderCellDef>Mobile Number</th>
+    <td mat-cell *matCellDef="let element">{{element.mobileNumber}}</td>
+  </ng-container>
+  <ng-container matColumnDef="fine">
+    <th mat-header-cell *matHeaderCellDef>Fine</th>
+    <td mat-cell *matCellDef="let element">{{element.fine}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="blocked">
+    <th mat-header-cell *matHeaderCellDef>Blocked</th>
+    <td mat-cell *matCellDef="let element">{{!element.locked ? "Blocked" : "Not Blocked"}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="active">
+    <th mat-header-cell *matHeaderCellDef>Active</th>
+    <td mat-cell *matCellDef="let element">{{element.enabled ? "Active" : "Inactive"}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="createdOn">
+    <th mat-header-cell *matHeaderCellDef>Created On</th>
+    <td mat-cell *matCellDef="let element">{{element.createdOn | date:'dd-MMM-YYYY'}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef>Action</th>
+    <td mat-cell *matCellDef="let element">
+      <div class="action-class">
+        <mat-slide-toggle color="accent" [checked]="!element.enabled" matTooltip="{{element.enabled ? 'Active' : 'Inactive'}}" (change)="enabledisableUser(element)"></mat-slide-toggle>
+        <mat-slide-toggle color="warn" [checked]="!element.locked" matTooltip="{{!element.locked ? 'Blocked' : 'Not Blocked'}}" (change)="blockUser(element)"></mat-slide-toggle>
+      </div>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+</table>

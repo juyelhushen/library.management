@@ -1,0 +1,86 @@
+@import "../../../theme.scss";
+mat-card {
+  width: 700px;
+  margin: auto;
+  margin-top: 50px;
+  padding: 20px;
+  align-items: center;
+  background: #393E46;
+
+
+  mat-card-title {
+    color:  $light-accent-A200;;
+  }
+
+  .profile-ctn {
+    display: block;
+    text-align: center;
+    margin-top: 1rem;
+
+    mat-form-field {
+      margin: 0.5rem ;
+      width: 43%;
+    }
+
+  }
+
+  mat-card-actions {
+    position: relative;
+    button {
+      margin: 7px;
+      left: 0.5rem;
+    }
+  }
+
+}
+
+  // mat-card-action  {
+  //   margin: 10px;
+  //   justify-content: center;
+
+
+  //   button {
+  //     margin: 10px;
+  //     width: max-content;
+  //     transition: 1s ease;
+  //   }
+
+  //   button:hover {
+  //     background: transparent;
+  //     color: aliceblue;
+  //   }
+  // }
+// }
+
+// .avatar {
+//   position: relative;
+// }
+
+// .mat-icon-avatar {
+//   font-size: 60px;
+//   color: #ccc;
+//   background-color: #fff;
+//   border-radius: 50%;
+//   border: 2px solid #ccc;
+//   position: absolute;
+//   top: 0;
+//   left: 50%;
+//   transform: translate(-50%, -50%);
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   overflow: hidden;
+//   cursor: pointer;
+// }
+
+// .mat-icon-avatar:hover {
+//   opacity: 0.7;
+// }
+
+// img {
+//   margin-top: 20px;
+//   display: block;
+//   margin-left: auto;
+//   margin-right: auto;
+//   max-width: 300px;
+// }

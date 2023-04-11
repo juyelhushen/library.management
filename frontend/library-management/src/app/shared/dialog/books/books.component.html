@@ -1,0 +1,58 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row fxLayout="row">
+    <span>{{dialogData.action}} Book</span>
+    <span class="spacer"></span>
+    <button class="mat-dialog-close" mat-icon-button mat-dialog-close>
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-dialog-content [formGroup]="bookForm">
+
+  <mat-form-field appearance="outline" color="accent">
+    <mat-label>Book Title</mat-label>
+    <input type="text" matInput formControlName="title">
+    <mat-error *ngIf="bookForm.controls.title.touched && bookForm.controls.title.invalid">
+      <span *ngIf="bookForm.controls.title.errors.required">This Field is mandatory.</span>
+      <span *ngIf="bookForm.controls.title.errors.pattern">This Field is invalid.</span>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" color="accent">
+    <mat-label>Select Category</mat-label>
+    <mat-select formControlName="categoryId">
+      <mat-option *ngFor="let category of categories" [value]="category.id">
+        {{category.name+" - "+category.subcategory}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" color="accent">
+    <mat-label>Price</mat-label>
+    <input type="text" matInput formControlName="price">
+    <mat-error *ngIf="bookForm.controls.price.touched && bookForm.controls.price.invalid">
+      <span *ngIf="bookForm.controls.price.errors.required">This Field is mandatory.</span>
+      <span *ngIf="bookForm.controls.price.errors.pattern">This Field is invalid.</span>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" color="accent">
+    <mat-label>Author</mat-label>
+    <input type="text" matInput formControlName="author">
+    <mat-error *ngIf="bookForm.controls.author.touched && bookForm.controls.author.invalid">
+      <span *ngIf="bookForm.controls.author.errors.required">This Field is mandatory.</span>
+      <span *ngIf="bookForm.controls.author.errors.pattern">This Field is invalid.</span>
+    </mat-error>
+  </mat-form-field>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="center">
+  <button mat-raised-button color="primary" type="submit" (click)="handleSubmit()" [disabled]="!(bookForm.valid && bookForm.dirty)">
+    <mat-icon>save</mat-icon>{{action}}
+  </button>
+  <button mat-raised-button color="warn" mat-dialog-close>
+    <mat-icon>cancel</mat-icon>Close
+  </button>
+</mat-dialog-actions>

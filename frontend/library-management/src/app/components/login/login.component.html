@@ -1,0 +1,43 @@
+<h1>Login</h1>
+
+<mat-grid-list cols="2" rowHeight="80px" gutterSize="10px" [formGroup]="loginForm">
+  <mat-grid-tile colspan="2">
+    <mat-form-field appearance="fill" color="accent">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" type="text" />
+      <mat-error *ngIf="loginForm.controls.email.touched && loginForm.controls.email.invalid">
+        <span *ngIf="loginForm.controls.email.errors.pattern">Invalid email, Please check.</span>
+        <span *ngIf="loginForm.controls.email.errors.required">This is mandatory field.</span>
+      </mat-error>
+    </mat-form-field>
+  </mat-grid-tile>
+
+  <mat-grid-tile colspan="2">
+    <mat-form-field appearance="fill" color="accent">
+      <mat-label>Password</mat-label>
+      <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" type="password" />
+      <button mat-icon-button matSuffix (click)="hide = !hide">
+        <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
+      <mat-error *ngIf="loginForm.controls.password.touched && loginForm.controls.password.invalid">
+        <span *ngIf="loginForm.controls.password.errors.pattern">Invalid password type.</span>
+        <span *ngIf="loginForm.controls.password.errors.required">This is mandatory field.</span>
+        <span *ngIf="loginForm.controls.password.errors.minlength">Password must be atleast 6 characters.</span>
+        <span *ngIf="loginForm.controls.password.errors.maxlength">Password can't be more than 13 characters.</span>
+      </mat-error>
+    </mat-form-field>
+  </mat-grid-tile>
+
+  <mat-grid-tile colspan="2">
+    <button mat-flat-button color="accent" class="btn" [disabled]="!(loginForm.valid && loginForm.dirty)" (click)="onSubmit()">Login</button>
+  </mat-grid-tile>
+</mat-grid-list>
+
+<div class="login-link">
+  <span>Don't have an account.</span>
+  <button mat-stroked-button color="accent" routerLink="/signup">SignUp here</button>
+</div>
+
+
+
+

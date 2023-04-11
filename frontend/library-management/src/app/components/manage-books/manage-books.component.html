@@ -1,0 +1,71 @@
+<h1>Manage Books</h1>
+
+<div class="btn-book">
+  <div>
+    <mat-card>
+      <mat-card-content>
+        <div>
+          Showing result for {{getCountOfBooks()}} books.
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div>
+    <button mat-raised-button color="primary" (click)="handleAddBook()"><mat-icon>add_circle</mat-icon>Add Book</button>
+  </div>
+</div>
+
+<mat-accordion multi="true">
+  <mat-expansion-panel expanded *ngFor="let list of booksToDisplay">
+      <mat-expansion-panel-header>
+          <mat-panel-title>{{list.categoryName | titlecase}}</mat-panel-title>
+          <mat-panel-description>{{list.subcategory | titlecase}}</mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <table mat-table [dataSource]="list.books">
+
+          <!-- Id Column -->
+          <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef> ID </th>
+              <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+          </ng-container>
+
+          <!-- Book Title Column -->
+          <ng-container matColumnDef="title">
+              <th mat-header-cell *matHeaderCellDef> Book Title </th>
+              <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+          </ng-container>
+
+          <!-- Author Column -->
+          <ng-container matColumnDef="author">
+              <th mat-header-cell *matHeaderCellDef> Book Author </th>
+              <td mat-cell *matCellDef="let element"> {{element.author}} </td>
+          </ng-container>
+
+          <!-- Price Column -->
+          <ng-container matColumnDef="price">
+              <th mat-header-cell *matHeaderCellDef> Price </th>
+              <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+          </ng-container>
+
+          <!-- Available Column -->
+          <ng-container matColumnDef="available">
+              <th mat-header-cell *matHeaderCellDef> Availablity </th>
+              <td mat-cell *matCellDef="let element">
+                  {{element.available ? "Available" : "Not Available"}}
+              </td>
+          </ng-container>
+
+          <ng-container matColumnDef="action">
+              <th mat-header-cell *matHeaderCellDef>Action</th>
+              <td mat-cell *matCellDef="let element">
+               <button mat-icon-button (click)="handleEditBook(element)"><mat-icon>edit</mat-icon></button>
+               <button mat-icon-button (click)="deleteCategory(element.id)"><mat-icon>delete</mat-icon></button>
+              </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+  </mat-expansion-panel>
+</mat-accordion>
